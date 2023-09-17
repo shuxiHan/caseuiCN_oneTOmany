@@ -149,6 +149,7 @@ export default {
     async do () {
       // 在这里执行你的操作
       console.log('定时触发的操作')
+      console.log('this role:' + this.role)
       // eslint-disable-next-line no-unused-vars
       const response = await this.$http.get('/api/checkpal', {
         params: {
@@ -197,10 +198,13 @@ export default {
       })
     },
     startTimer () {
-      // 每120秒触发一次定时器
+      // 当 partner 不为空时，执行定时器相关的代码
       this.timer = setInterval(() => {
-        this.do() // 调用定时触发的函数
-      }, 30000) // 120秒 = 120000毫秒
+        console.log('partner:' + this.partner)
+        if (this.partner !== '') {
+          this.do() // 调用定时触发的函数
+        }
+      }, 50000) // 30秒 = 30000毫秒
     },
     stopTimer () {
       // 停止定时器

@@ -3,6 +3,7 @@
     <div class="popup-content">
       <!-- 这里添加弹窗的内容 -->
       <p>又有新用户等待您的聊天，快去帮助吧(PS:您的角色定位不变，只打开另一个网页与新用户聊天)</p>
+      <button @click="closePopup2">关闭</button>
       <button @click="closePopup">接受</button>
     </div>
   </div>
@@ -23,6 +24,9 @@ export default {
     closePopup () {
       this.showPopup = false
       window.open('/index?_uuid=' + this.touuid + '&_user=' + this.touser)
+    },
+    closePopup2 () {
+      this.showPopup = false
     }
   }
 }

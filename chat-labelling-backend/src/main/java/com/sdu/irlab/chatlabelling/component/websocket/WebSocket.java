@@ -10,10 +10,12 @@ import com.sdu.irlab.chatlabelling.datasource.domain.Conversation;
 import com.sdu.irlab.chatlabelling.datasource.domain.SystemStatus;
 import com.sdu.irlab.chatlabelling.datasource.domain.User;
 import com.sdu.irlab.chatlabelling.datasource.domain.WaitUser;
+import com.sdu.irlab.chatlabelling.datasource.domain.WaitTime;
 import com.sdu.irlab.chatlabelling.datasource.domain.WebsocketLog;
 import com.sdu.irlab.chatlabelling.datasource.repository.SystemStatusDAO;
 import com.sdu.irlab.chatlabelling.datasource.repository.UserDAO;
 import com.sdu.irlab.chatlabelling.datasource.repository.WaitUserDAO;
+import com.sdu.irlab.chatlabelling.datasource.repository.WaitTimeDAO;
 import com.sdu.irlab.chatlabelling.datasource.repository.WebsocketLogDAO;
 import com.sdu.irlab.chatlabelling.service.ChatService;
 //import com.sun.corba.se.impl.orbutil.concurrent.Mutex;
@@ -31,6 +33,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.Semaphore;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 
 @Component
 @ServerEndpoint("/websocket/{username}")
@@ -40,6 +46,7 @@ public class WebSocket {
     private static int onlineNumber = 0;
 
     private static WaitUserDAO waitUserDAO;
+    private static WaitTimeDAO waitTimeDAO;
 
     protected Session session;
     protected String username;
@@ -65,6 +72,9 @@ public class WebSocket {
     private String waitingFor = null;//正在等待的用户
     private Timer timer = new Timer();//timerTask的定时器
     private TimerTask timerTask;
+
+    // 创建一个 Timer用来执行延迟保存数据库作用
+    private static Timer newTimer = new Timer();
 
     //开线程，用来发消息
     static {
@@ -175,17 +185,35 @@ public class WebSocket {
 
         } else {//没有找到对话对象，开始等待
             waitingList.add(user);
-            // 查询是否已经存在相同用户名的 WaitUser 记录
+
+            // 延迟100秒将此用户保存到waitTime表
+            newTimer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    WaitTime waitTime = new WaitTime();
+                    waitTime.setName(user);
+                    waitTime.setTime("100");
+                    waitTimeDAO.saveAndFlush(waitTime);
+                }
+            }, 100000); // 100 秒对应的毫秒数
+
+            // 查询是否已经存在相同用户名的 WaitUser 记录，如果不存在就将此用户保存到WaitUser表
             boolean exists = waitUserDAO.existsByName(user);
 
             if (!exists) {
-                // 如果不存在相同用户名的记录，则执行保存操作
-                User u = userDAO.findByName(user);
-                String role = u.getRole();
-                WaitUser waitUser = new WaitUser();
-                waitUser.setName(user);
-                waitUser.setRole(role);
-                waitUserDAO.saveAndFlush(waitUser);
+                // 创建一个 ScheduledExecutorService
+                ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+
+                // 延迟 30 秒后执行操作
+                executorService.schedule(() -> {
+                    // 执行保存操作
+                    User u = userDAO.findByName(user);
+                    String role = u.getRole();
+                    WaitUser waitUser = new WaitUser();
+                    waitUser.setName(user);
+                    waitUser.setRole(role);
+                    waitUserDAO.saveAndFlush(waitUser);
+                }, 45, TimeUnit.SECONDS);
             } else {
                 // 如果已经存在相同用户名的记录，可以选择执行其他操作或者忽略
                 System.out.println("相同用户名的记录已存在，不进行保存操作");
@@ -338,6 +366,14 @@ public class WebSocket {
             onlineNumber--;
             clients.remove(username);
             waitingList.remove(username);
+            WaitUser waitUser = waitUserDAO.findByName(username);
+            if (waitUser != null) {
+                // 执行删除操作
+                waitUserDAO.delete(waitUser);
+            } else {
+                // 如果 waitUser 为空，可以选择执行其他操作或者忽略删除操作
+                System.out.println("未找到具有该用户名的记录，不执行删除操作");
+            }
             logger.info("User disconnected! username=" + username + ", current online number=" + onlineNumber);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -501,15 +537,32 @@ public class WebSocket {
             }
             if (partner != null) {
                 waitingList.remove(partner);
-                WaitUser waitUser = waitUserDAO.findByName(partner);
-                // 判断 waitUser 是否为空
-                if (waitUser != null) {
-                    // 执行删除操作
-                    waitUserDAO.delete(waitUser);
+
+                // 在匹配成功时，如果在100秒内取消了任务，则不会执行保存操作
+                if (newTimer != null) {
+                    newTimer.cancel();
+                    System.out.println("匹配成功，计时任务已取消");
                 } else {
-                    // 如果 waitUser 为空，可以选择执行其他操作或者忽略删除操作
-                    System.out.println("未找到具有该用户名的记录，不执行删除操作");
+                    System.out.println("计时任务未取消，将会执行保存操作");
                 }
+
+                 // 将 partner 声明为 final 变量
+                final String partnerFinal = partner;
+
+                // 创建一个 ScheduledExecutorService
+                ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+
+                // 延迟 30 秒后执行删除操作
+                executorService.schedule(() -> {
+                    WaitUser waitUser = waitUserDAO.findByName(partnerFinal);
+                    if (waitUser != null) {
+                        // 执行删除操作
+                        waitUserDAO.delete(waitUser);
+                    } else {
+                        // 如果 waitUser 为空，可以选择执行其他操作或者忽略删除操作
+                        System.out.println("未找到具有该用户名的记录，不执行删除操作");
+                    }
+                }, 45, TimeUnit.SECONDS);
             }
         }
         System.out.println("finish finding partner--user=" + user + ",role=" + partnerRole + ",partner=" + partner);
@@ -565,6 +618,11 @@ public class WebSocket {
     @Autowired
     public void setWaitUserDAO(WaitUserDAO waitUserDAO) {
         this.waitUserDAO = waitUserDAO;
+    }
+
+    @Autowired
+    public void setWaitTimeDAO(WaitTimeDAO waitTimeDAO) {
+        this.waitTimeDAO = waitTimeDAO;
     }
 
 }

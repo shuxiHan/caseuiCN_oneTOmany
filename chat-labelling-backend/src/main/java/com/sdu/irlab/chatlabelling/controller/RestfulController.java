@@ -134,7 +134,7 @@ public class RestfulController {
         String reRole = ro.equals("sys") ? "cus" : "sys";
         List<WaitUser> waitUsers = waitUserDAO.findByRole(reRole);
 
-        if (waitUsers.size()>0) {
+        if (!waitUsers.isEmpty()) {
             // 获取第一个元素
             WaitUser firstUser = waitUsers.get(0);
 
@@ -160,8 +160,8 @@ public class RestfulController {
             response.put("name", username);
             response.put("role", role);
 
-            // 删除第一个元素对应的行
-            waitUserDAO.delete(firstUser);
+            // 删除第一个元素对应的行 不用删除，因为匹配的时候会有删除操作
+//             waitUserDAO.delete(firstUser);
         } else {
             // 如果列表为空，返回"none"
             response.put("name", "none");
