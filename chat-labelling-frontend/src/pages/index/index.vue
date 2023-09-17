@@ -50,7 +50,7 @@
                 </li>
               </ul>
             </Alert>
-            <Popup ref="popup" :touser="touser" :touuid="touuid"></Popup>
+            <Popup ref="popup" :touser="touser" :touuid="touuid" @stop-timer="stopTimer"></Popup>
             <labelling
               :height="(height-20-(role=='cus'? 60:0))+'px'"
               ref="labelling"

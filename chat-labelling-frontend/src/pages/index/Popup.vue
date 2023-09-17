@@ -26,6 +26,7 @@ export default {
       window.open('/index?_uuid=' + this.touuid + '&_user=' + this.touser)
     },
     closePopup2 () {
+      this.$emit('stop-timer')
       this.showPopup = false
     }
   }
