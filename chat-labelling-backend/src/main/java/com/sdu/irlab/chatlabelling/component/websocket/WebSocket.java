@@ -542,6 +542,7 @@ public class WebSocket {
                 if (newTimer != null) {
                     newTimer.cancel();
                     System.out.println("匹配成功，计时任务已取消");
+                    newTimer = new Timer();
                 } else {
                     System.out.println("计时任务未取消，将会执行保存操作");
                 }
