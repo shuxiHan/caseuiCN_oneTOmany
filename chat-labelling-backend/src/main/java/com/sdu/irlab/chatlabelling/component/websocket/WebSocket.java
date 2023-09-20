@@ -187,15 +187,17 @@ public class WebSocket {
             waitingList.add(user);
 
             // 延迟100秒将此用户保存到waitTime表
-            newTimer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    WaitTime waitTime = new WaitTime();
-                    waitTime.setName(user);
-                    waitTime.setTime("100");
-                    waitTimeDAO.saveAndFlush(waitTime);
-                }
-            }, 100000); // 100 秒对应的毫秒数
+            // 可以选择重新创建一个新的定时器
+            //newTimer = new Timer();
+	    //newTimer.schedule(new TimerTask() {
+              //  @Override
+                //public void run() {
+                  //  WaitTime waitTime = new WaitTime();
+                    //waitTime.setName(user);
+                   // waitTime.setTime("100");
+                   // waitTimeDAO.saveAndFlush(waitTime);
+                //}
+            //}, 100000); // 100 秒对应的毫秒数
 
             // 查询是否已经存在相同用户名的 WaitUser 记录，如果不存在就将此用户保存到WaitUser表
             boolean exists = waitUserDAO.existsByName(user);
@@ -366,14 +368,19 @@ public class WebSocket {
             onlineNumber--;
             clients.remove(username);
             waitingList.remove(username);
-            WaitUser waitUser = waitUserDAO.findByName(username);
-            if (waitUser != null) {
-                // 执行删除操作
-                waitUserDAO.delete(waitUser);
-            } else {
-                // 如果 waitUser 为空，可以选择执行其他操作或者忽略删除操作
-                System.out.println("未找到具有该用户名的记录，不执行删除操作");
-            }
+            // 延迟 45 秒后执行删除操作
+	    // 创建一个 ScheduledExecutorService
+	    ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+	    executorService.schedule(() -> {
+    		WaitUser waitUser = waitUserDAO.findByName(username);
+    		if (waitUser != null) {
+        	// 执行删除操作
+        	waitUserDAO.delete(waitUser);
+    		} else {
+        	// 如果 waitUser 为空，可以选择执行其他操作或者忽略删除操作
+        	System.out.println("未找到具有该用户名的记录，不执行删除操作");
+    		}
+	    }, 45, TimeUnit.SECONDS);
             logger.info("User disconnected! username=" + username + ", current online number=" + onlineNumber);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -539,13 +546,13 @@ public class WebSocket {
                 waitingList.remove(partner);
 
                 // 在匹配成功时，如果在100秒内取消了任务，则不会执行保存操作
-                if (newTimer != null) {
-                    newTimer.cancel();
-                    System.out.println("匹配成功，计时任务已取消");
-                    newTimer = new Timer();
-                } else {
-                    System.out.println("计时任务未取消，将会执行保存操作");
-                }
+              //  if (newTimer != null) {
+                //    newTimer.cancel();
+                  //  System.out.println("匹配成功，计时任务已取消");
+                   // newTimer = new Timer();
+                //} else {
+                  //  System.out.println("计时任务未取消，将会执行保存操作");
+                //}
 
                  // 将 partner 声明为 final 变量
                 final String partnerFinal = partner;

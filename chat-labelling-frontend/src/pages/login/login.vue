@@ -11,6 +11,7 @@
           @submit.native.prevent
         >
           <h1>登录</h1>
+          <p :style="textStyle">由于用户名中文字符显示乱码，用户名请使用英文字符或数字</p >
           <Divider />
           <FormItem prop="user">
             <Input type="text" v-model="formInline.user" placeholder="用户名" name="name">
@@ -46,6 +47,12 @@ export default {
   },
   data () {
     return {
+      textStyle: {
+        color: 'grey',
+        opacity: '0.8',
+        textAlign: 'center',
+        fontSize: '14px'
+      },
       choose_role: 'sys',
       formInline: {
         user: '',
@@ -70,7 +77,7 @@ export default {
     handleSubmit (name, action) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          let usrURL = 'http://localhost:9191/login?name=' + this.formInline.user + '&password=' + this.formInline.password + '&role=' + this.formInline.role + '&action=' + action
+          let usrURL = 'http://8.218.97.40:9191/login?name=' + this.formInline.user + '&password=' + this.formInline.password + '&role=' + this.formInline.role + '&action=' + action
           axios.post(
             usrURL
           ).then((json) => {
