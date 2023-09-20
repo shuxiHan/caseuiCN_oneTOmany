@@ -6179,3 +6179,186 @@ back!假设您想从Amazon.cn购买一件产品。请在心中想象一个您想
 finding partner--user=std48,role=sys,waitingList=[]
 finish finding partner--user=std48,role=sys,partner=null
 =================================================================================
+2023-09-20 15:52:14.818  INFO 148685 --- [.0-9090-exec-10] c.s.i.c.component.websocket.WebSocket    : User online! username=std54, current online number=10
+========================startChat ===============================
+finding partner--user=std54,role=cus,waitingList=[std48]
+finish finding partner--user=std54,role=cus,partner=std48
+found new partner --std48
+back!假设您想从Amazon.cn购买一件产品。请在心中想象一个您想购买的目标产品，然后您将与我们的系统进行聊天，以获取您的目标产品。
+=================================================================================
+2023-09-20 15:53:06.737  INFO 148685 --- [0.0-9090-exec-7] c.s.i.c.component.websocket.WebSocket    : User online! username=dengkaiyuan, current online number=11
+========================startChat ===============================
+finding partner--user=dengkaiyuan,role=sys,waitingList=[]
+finish finding partner--user=dengkaiyuan,role=sys,partner=null
+=================================================================================
+com.sdu.irlab.chatlabelling.datasource.domain.Conversation@663fc63
+[com.sdu.irlab.chatlabelling.datasource.domain.Message@5d870783, com.sdu.irlab.chatlabelling.datasource.domain.Message@3483ac61, com.sdu.irlab.chatlabelling.datasource.domain.Message@3e44e10e, com.sdu.irlab.chatlabelling.datasource.domain.Message@6f6c648f]
+["Chitchat"]
+["Interpret"]
+["Recommend"]
+["Reveal"]
+2023-09-20 15:53:44.328  INFO 148685 --- [0.0-9090-exec-9] c.s.i.c.component.websocket.WebSocket    : User disconnected! username=wangzixin, current online number=10
+2023-09-20 15:53:47.111  INFO 148685 --- [0.0-9090-exec-2] c.s.i.c.component.websocket.WebSocket    : User disconnected! username=std47, current online number=9
+2023-09-20 15:53:50.470  INFO 148685 --- [0.0-9090-exec-1] c.s.i.c.component.websocket.WebSocket    : User online! username=wangzixin, current online number=10
+========================startChat ===============================
+finding partner--user=wangzixin,role=cus,waitingList=[dengkaiyuan]
+finish finding partner--user=wangzixin,role=cus,partner=dengkaiyuan
+found new partner --dengkaiyuan
+back!假设您想从Amazon.cn购买一件产品。请在心中想象一个您想购买的目标产品，然后您将与我们的系统进行聊天，以获取您的目标产品。
+=================================================================================
+2023-09-20 15:53:59.772  INFO 148685 --- [0.0-9090-exec-7] c.s.i.c.component.websocket.WebSocket    : User online! username=std56, current online number=11
+========================startChat ===============================
+finding partner--user=std56,role=cus,waitingList=[]
+finish finding partner--user=std56,role=cus,partner=null
+=================================================================================
+2023-09-20 15:54:06.687  INFO 148685 --- [0.0-9090-exec-5] c.s.i.c.component.websocket.WebSocket    : User online! username=std57, current online number=12
+========================startChat ===============================
+finding partner--user=std57,role=cus,waitingList=[std56]
+finish finding partner--user=std57,role=cus,partner=null
+=================================================================================
+2023-09-20 15:54:08.943  INFO 148685 --- [0.0-9090-exec-1] c.s.i.c.component.websocket.WebSocket    : User disconnected! username=ly, current online number=11
+未找到具有该用户名的记录，不执行删除操作
+未找到具有该用户名的记录，不执行删除操作
+com.sdu.irlab.chatlabelling.datasource.domain.Conversation@6687670a
+[com.sdu.irlab.chatlabelling.datasource.domain.Message@1084af9d, com.sdu.irlab.chatlabelling.datasource.domain.Message@2ce935a, com.sdu.irlab.chatlabelling.datasource.domain.Message@64a49367, com.sdu.irlab.chatlabelling.datasource.domain.Message@17cd5acb]
+["Recommend"]
+null
+2023-09-20 15:54:47.812 ERROR 148685 --- [0.0-9090-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+
+java.lang.NullPointerException: null
+	at com.sdu.irlab.chatlabelling.controller.RestfulController.getSearchedMessage(RestfulController.java:233) ~[classes!/:0.0.1-SNAPSHOT]
+	at com.sdu.irlab.chatlabelling.controller.RestfulController$$FastClassBySpringCGLIB$$e81912b0.invoke(<generated>) ~[classes!/:0.0.1-SNAPSHOT]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:769) ~[spring-aop-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747) ~[spring-aop-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:88) ~[spring-aop-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at com.sdu.irlab.chatlabelling.aspect.LogRequestAspect.doAround(LogRequestAspect.java:78) ~[classes!/:0.0.1-SNAPSHOT]
+	at sun.reflect.GeneratedMethodAccessor98.invoke(Unknown Source) ~[na:na]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_382]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_382]
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:644) ~[spring-aop-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:633) ~[spring-aop-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:70) ~[spring-aop-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747) ~[spring-aop-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:95) ~[spring-aop-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747) ~[spring-aop-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689) ~[spring-aop-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at com.sdu.irlab.chatlabelling.controller.RestfulController$$EnhancerBySpringCGLIB$$a68f45fd.getSearchedMessage(<generated>) ~[classes!/:0.0.1-SNAPSHOT]
+	at sun.reflect.GeneratedMethodAccessor147.invoke(Unknown Source) ~[na:na]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_382]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_382]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:888) ~[spring-webmvc-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793) ~[spring-webmvc-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040) ~[spring-webmvc-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634) ~[tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.30.jar!/:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.2.1.RELEASE.jar!/:5.2.1.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358) ~[spring-web-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271) ~[spring-web-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.3.RELEASE.jar!/:5.2.3.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) [tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) [tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860) [tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1598) [tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_382]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_382]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.30.jar!/:9.0.30]
+	at java.lang.Thread.run(Thread.java:750) [na:1.8.0_382]
+
+2023-09-20 15:54:53.452  INFO 148685 --- [0.0-9090-exec-1] c.s.i.c.component.websocket.WebSocket    : User disconnected! username=wangyanjie1, current online number=10
+未找到具有该用户名的记录，不执行删除操作
+2023-09-20 15:54:57.862  INFO 148685 --- [0.0-9090-exec-2] c.s.i.c.component.websocket.WebSocket    : User disconnected! username=std48, current online number=9
+========================startChat ===============================
+finding partner--user=std39,role=sys,waitingList=[std56, std57]
+finish finding partner--user=std39,role=sys,partner=std56
+found new partner --std56
+back!假设您想从Amazon.cn购买一件产品。请在心中想象一个您想购买的目标产品，然后您将与我们的系统进行聊天，以获取您的目标产品。
+=================================================================================
+com.sdu.irlab.chatlabelling.datasource.domain.Conversation@6ab57d9e
+[com.sdu.irlab.chatlabelling.datasource.domain.Message@6bb03a09, com.sdu.irlab.chatlabelling.datasource.domain.Message@15fd7ece, com.sdu.irlab.chatlabelling.datasource.domain.Message@5317fe11, com.sdu.irlab.chatlabelling.datasource.domain.Message@74abe72f, com.sdu.irlab.chatlabelling.datasource.domain.Message@1e21ebc1]
+["Interpret"]
+["Chitchat"]
+["Interpret"]
+["Recommend"]
+["Reveal"]
+2023-09-20 15:55:17.528  INFO 148685 --- [0.0-9090-exec-5] c.s.i.c.component.websocket.WebSocket    : User disconnected! username=dengkaiyuan_1, current online number=8
+2023-09-20 15:55:37.167  INFO 148685 --- [0.0-9090-exec-8] c.s.i.c.component.websocket.WebSocket    : User disconnected! username=std49, current online number=7
+未找到具有该用户名的记录，不执行删除操作
+未找到具有该用户名的记录，不执行删除操作
+========================startChat ===============================
+finding partner--user=std54,role=cus,waitingList=[std57]
+finish finding partner--user=std54,role=cus,partner=null
+=================================================================================
+未找到具有该用户名的记录，不执行删除操作
+未找到具有该用户名的记录，不执行删除操作
+com.sdu.irlab.chatlabelling.datasource.domain.Conversation@5d134fca
+[com.sdu.irlab.chatlabelling.datasource.domain.Message@4a67c1b, com.sdu.irlab.chatlabelling.datasource.domain.Message@3efac42d, com.sdu.irlab.chatlabelling.datasource.domain.Message@7ca5c981]
+["Chitchat"]
+["Recommend"]
+["Reveal"]
+2023-09-20 15:56:33.146  INFO 148685 --- [0.0-9090-exec-1] c.s.i.c.component.websocket.WebSocket    : User disconnected! username=std39, current online number=6
